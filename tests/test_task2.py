@@ -7,15 +7,10 @@ levels = Levels()
 
 
 def test_rashoumon():
-  rashoumon_path = os.path.join(
+  file_path = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     "rashoumon.txt"
   )
-  result = grade_file_by_jlpt(levels, rashoumon_path)
+  result = grade_file_by_jlpt(levels, file_path)
 
-  assert result["N5"] == "34%"
-  assert result["N4"] == "58%"
-  assert result["N3"] == "78%"
-  assert result["N2"] == "88%"
-  assert result["N1"] == "100%"
-  assert set(result.keys()) == set(["N1", "N2", "N3", "N4", "N5"])
+  assert result == {'N1': '96%', 'N2': '84%', 'N3': '75%', 'N4': '56%', 'N5': '33%'}

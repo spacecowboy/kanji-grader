@@ -59,6 +59,8 @@ class Levels:
     Given a string like "日", returns the JLPT level like "N5"
 
     If the character is not part of any JLPT level, then None is returned
+
+    If the character is not a recognized kanji, then an exception is thrown
     """
     if kanji is None or len(kanji) < 1:
       raise ValueError("get_jlpt_level accepts a single character, but you gave it nothing.")
@@ -68,7 +70,7 @@ class Levels:
     entry = self.data.get(kanji, None)
 
     if entry is None:
-      return None
+      raise ValueError("Not a recognized kanji")
 
     return entry['jlpt_new']
 
@@ -86,6 +88,6 @@ class Levels:
     entry = self.data.get(kanji, None)
 
     if entry is None:
-      return None
+      raise ValueError("Not a recognized kanji")
 
     return entry['grade']
